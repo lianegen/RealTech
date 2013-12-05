@@ -1,4 +1,4 @@
-package testing;
+package realtech;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -7,6 +7,27 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.MinecraftForge;
+import realtech.block.HardOreBlock;
+import realtech.block.LadderBlock;
+import realtech.block.MagnetiteOreBlock;
+import realtech.block.ModBlock;
+import realtech.block.ModBrick;
+import realtech.block.NettingFence;
+import realtech.block.PanesBlock;
+import realtech.block.Pillar;
+import realtech.block.SolidBlock;
+import realtech.block.SpecialBlock;
+import realtech.block.SpecialGlassBlock;
+import realtech.block.SpecialWood;
+import realtech.block.UnSolidBlock;
+import realtech.enumtool.EnumToolMod;
+import realtech.generator.OreGenerator;
+import realtech.handler.SawCraftingHandler;
+import realtech.item.BrassSword;
+import realtech.item.ItemPillar;
+import realtech.item.ModItem;
+import realtech.item.ModItemSaw;
+import realtech.lib.Reference;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -14,7 +35,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "testing", name = "Test pack", version = "0.1")
+@Mod(modid = Reference.modid, name = Reference.name, version = Reference.version)
 @NetworkMod (clientSideRequired = true, serverSideRequired = false)
 public class Main {
 	//BLOKY

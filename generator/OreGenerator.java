@@ -1,6 +1,8 @@
-package testing;
+package realtech.generator;
 
 import java.util.Random;
+
+import realtech.Main;
 
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;

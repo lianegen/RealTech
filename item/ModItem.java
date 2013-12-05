@@ -1,4 +1,4 @@
-package testing;
+package realtech.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

@@ -1,4 +1,4 @@
-package testing;
+package realtech.item;
 
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;

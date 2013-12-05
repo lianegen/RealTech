@@ -1,6 +1,8 @@
-package testing;
+package realtech.block;
 
 import java.util.Random;
+
+import realtech.Main;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

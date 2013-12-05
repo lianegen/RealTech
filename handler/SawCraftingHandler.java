@@ -1,5 +1,6 @@
-package testing;
+package realtech.handler;
 
+import realtech.Main;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;

@@ -1,4 +1,4 @@
-package testing;
+package realtech.block;
 
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;

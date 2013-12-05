@@ -1,4 +1,4 @@
-package testing;
+package realtech.block;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class PanesBlock extends Block{
+public class NettingFence extends Block{
 	
 	private String location;
 	//zacatek x y z konec x y z
@@ -37,7 +37,7 @@ public class PanesBlock extends Block{
 	public int getRenderBlockPass(){
 		return 0;
 	}
-	public PanesBlock(int id, Material blockMaterial,String location) {
+	public NettingFence(int id, Material blockMaterial,String location) {
 		super(id, blockMaterial);
 		this.location = location;
 	}	

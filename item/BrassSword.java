@@ -1,5 +1,6 @@
-package testing;
+package realtech.item;
 
+import realtech.enumtool.EnumToolMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;

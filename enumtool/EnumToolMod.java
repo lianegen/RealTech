@@ -1,5 +1,6 @@
-package testing;
+package realtech.enumtool;
 
+import realtech.Main;
 import net.minecraft.item.Item;
 
 public enum EnumToolMod

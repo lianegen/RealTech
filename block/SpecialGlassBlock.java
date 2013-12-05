@@ -1,4 +1,4 @@
-package testing;
+package realtech.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
