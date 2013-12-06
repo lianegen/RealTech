@@ -1,7 +1,7 @@
 package realtech.enumtool;
 
-import realtech.Main;
 import net.minecraft.item.Item;
+import realtech.RealTech;
 
 public enum EnumToolMod
 {
@@ -89,8 +89,8 @@ public enum EnumToolMod
     {
         switch (this)
         {
-            case BRASS: return Main.brass_ingot.itemID;
-            case STEEL: return Main.steel_ingot.itemID;
+            case BRASS: return RealTech.brass_ingot.itemID;
+            case STEEL: return RealTech.steel_ingot.itemID;
             default:      return (customCraftingMaterial == null ? 0 : customCraftingMaterial.itemID);
         }
     }

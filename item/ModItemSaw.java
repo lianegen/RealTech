@@ -1,5 +1,6 @@
 package realtech.item;
 
+import realtech.lib.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -37,6 +38,6 @@ public class ModItemSaw extends Item{
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void registerIcons(IconRegister par1){
-			this.itemIcon = par1.registerIcon("testing:"+location);
+			this.itemIcon = par1.registerIcon(Reference.modid + ":"+location);
 		}
 }

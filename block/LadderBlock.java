@@ -2,6 +2,8 @@ package realtech.block;
 
 import java.util.List;
 
+import realtech.lib.Reference;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -124,8 +126,8 @@ public class LadderBlock extends Block{
 			     */
 			    public void registerIcons(IconRegister par1IconRegister)
 			    {
-			        this.iconFront = par1IconRegister.registerIcon("testing:"+location + "_front");
-			        this.iconSide = par1IconRegister.registerIcon("testing:"+location + "_side");
+			        this.iconFront = par1IconRegister.registerIcon(Reference.modid + ":"+location + "_front");
+			        this.iconSide = par1IconRegister.registerIcon(Reference.modid + ":"+location + "_side");
 			    } 
 				/**
 			     * Called when the block is placed in the world.

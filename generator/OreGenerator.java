@@ -2,7 +2,7 @@ package realtech.generator;
 
 import java.util.Random;
 
-import realtech.Main;
+import realtech.RealTech;
 
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -38,7 +38,7 @@ public class OreGenerator implements IWorldGenerator {
         	int magnetitOreYCoord = random.nextInt(20);
         	int magnetitOreZCoord = j + random.nextInt(16);
         	
-        	(new WorldGenMinable(Main.magnetite_ore.blockID, 4)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
+        	(new WorldGenMinable(RealTech.magnetite_ore.blockID, 4)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
         }
 
 		for(int k = 0; k < 10; k++){
@@ -46,7 +46,7 @@ public class OreGenerator implements IWorldGenerator {
 			int magnetitOreYCoord = random.nextInt(64 - 48) + 48;
 			int magnetitOreZCoord = j + random.nextInt(16);
     	
-			(new WorldGenMinable(Main.tin_ore.blockID, 5)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
+			(new WorldGenMinable(RealTech.tin_ore.blockID, 5)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
 		}
 		
 		for(int k = 0; k < 10; k++){
@@ -54,7 +54,7 @@ public class OreGenerator implements IWorldGenerator {
 			int magnetitOreYCoord = random.nextInt(64 - 48) + 48;
 			int magnetitOreZCoord = j + random.nextInt(16);
     	
-			(new WorldGenMinable(Main.copper_ore.blockID, 5)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
+			(new WorldGenMinable(RealTech.copper_ore.blockID, 5)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
 		}
 		
 		for(int k = 0; k < 5; k++){
@@ -62,7 +62,7 @@ public class OreGenerator implements IWorldGenerator {
 			int magnetitOreYCoord = random.nextInt(64 - 32) + 32;
 			int magnetitOreZCoord = j + random.nextInt(16);
     	
-			(new WorldGenMinable(Main.aluminum_ore.blockID, 5)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
+			(new WorldGenMinable(RealTech.aluminum_ore.blockID, 5)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
 		}
 		
 		for(int k = 0; k < 8; k++){
@@ -70,7 +70,7 @@ public class OreGenerator implements IWorldGenerator {
 			int magnetitOreYCoord = random.nextInt(64 - 16) + 16;
 			int magnetitOreZCoord = j + random.nextInt(16);
 		
-			(new WorldGenMinable(Main.bauxite_ore.blockID, 4)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
+			(new WorldGenMinable(RealTech.bauxite_ore.blockID, 4)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
 		}
 		
 		for(int k = 0; k < 5; k++){
@@ -78,7 +78,7 @@ public class OreGenerator implements IWorldGenerator {
 			int magnetitOreYCoord = random.nextInt(64 - 16) + 16;
 			int magnetitOreZCoord = j + random.nextInt(16);
 			
-			(new WorldGenMinable(Main.tungsten_ore.blockID, 3)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
+			(new WorldGenMinable(RealTech.tungsten_ore.blockID, 3)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
 		}
 		
 		for(int k = 0; k < 5; k++){
@@ -86,7 +86,7 @@ public class OreGenerator implements IWorldGenerator {
 			int magnetitOreYCoord = random.nextInt(64 - 16) + 16;
 			int magnetitOreZCoord = j + random.nextInt(16);
 			
-			(new WorldGenMinable(Main.zinc_ore.blockID, 3)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
+			(new WorldGenMinable(RealTech.zinc_ore.blockID, 3)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
 		}
 		
 		for(int k = 0; k < 5; k++){
@@ -94,7 +94,7 @@ public class OreGenerator implements IWorldGenerator {
 			int magnetitOreYCoord = random.nextInt(64 - 44) + 44;
 			int magnetitOreZCoord = j + random.nextInt(16);
 			
-			(new WorldGenMinable(Main.lead_ore.blockID, 3)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
+			(new WorldGenMinable(RealTech.lead_ore.blockID, 3)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
 		}
 		
 		for(int k = 0; k < 5; k++){
@@ -102,7 +102,7 @@ public class OreGenerator implements IWorldGenerator {
 			int magnetitOreYCoord = random.nextInt(64);
 			int magnetitOreZCoord = j + random.nextInt(16);
 			
-			(new WorldGenMinable(Main.silver_ore.blockID, 3)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
+			(new WorldGenMinable(RealTech.silver_ore.blockID, 3)).generate(world, random, magnetitOreXCoord, magnetitOreYCoord, magnetitOreZCoord);
 		}
 	}
 	private void generateEnd(World world, Random random, int i, int j) {

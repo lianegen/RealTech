@@ -1,9 +1,9 @@
 package realtech.handler;
 
-import realtech.Main;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import realtech.RealTech;
 import cpw.mods.fml.common.ICraftingHandler;
 
 public class SawCraftingHandler implements ICraftingHandler
@@ -40,7 +40,7 @@ public class SawCraftingHandler implements ICraftingHandler
 	shouldBeSaw = craftMatrix.getStackInSlot(i);
 		
 	if(shouldBeSaw != null){
-		if(shouldBeSaw.itemID == Main.saw.itemID)
+		if(shouldBeSaw.itemID == RealTech.saw.itemID)
 		{
 			slot = i;
 			i = 20;

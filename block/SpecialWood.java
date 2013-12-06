@@ -4,6 +4,7 @@ import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
+import realtech.lib.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -25,7 +26,7 @@ public class SpecialWood extends BlockRotatedPillar{
 			icons = new Icon[2];
 			
 			for(int i = 0; i<icons.length; i++){
-				icons[i] = par1.registerIcon("testing:"+location+i);
+				icons[i] = par1.registerIcon(Reference.modid + ":"+location+i);
 			}
 		}
 		 @Override

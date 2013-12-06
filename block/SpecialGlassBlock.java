@@ -1,5 +1,6 @@
 package realtech.block;
 
+import realtech.lib.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
@@ -96,7 +97,7 @@ public class SpecialGlassBlock extends BlockBreakable{
 	     */
 	    public void registerIcons(IconRegister par1IconRegister)
 	    {
-	        this.iconSide = par1IconRegister.registerIcon("testing:"+location + "_side");
+	        this.iconSide = par1IconRegister.registerIcon(Reference.modid + ":"+location + "_side");
 	    } 
 		/**
 	     * Called when the block is placed in the world.

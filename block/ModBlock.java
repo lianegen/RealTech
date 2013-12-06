@@ -1,5 +1,6 @@
 package realtech.block;
 
+import realtech.lib.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -31,6 +32,6 @@ public class ModBlock extends Block{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister par1){
-		this.blockIcon = par1.registerIcon("testing:"+location);
+		this.blockIcon = par1.registerIcon(Reference.modid + ":"+location);
 	}
 }

@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.MinecraftForge;
+import realtech.block.BlockFluorescentLamp;
 import realtech.block.HardOreBlock;
 import realtech.block.LadderBlock;
 import realtech.block.MagnetiteOreBlock;
@@ -28,16 +29,28 @@ import realtech.item.ItemPillar;
 import realtech.item.ModItem;
 import realtech.item.ModItemSaw;
 import realtech.lib.Reference;
+import realtech.proxy.ClientProxy;
+import realtech.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = Reference.modid, name = Reference.name, version = Reference.version)
 @NetworkMod (clientSideRequired = true, serverSideRequired = false)
-public class Main {
+public class RealTech {
+	
+	@Instance(value = Reference.modid)
+	public static RealTech instance;
+	
+	@SidedProxy(clientSide = "realtech.proxy.ClientProxy", serverSide = "realtech.proxy.CommonProxy")
+    public static CommonProxy proxy;
+	
 	//BLOKY
 	public static Block block1;
 	public static Block small_glowstone;
@@ -50,7 +63,7 @@ public class Main {
 	public static Block block9;
 	public static Block netting_fence;
 	public static Block magnetite_ore;
-	public static Block specialLadder;
+	public static Block special_ladder;
 	public static Block rubber_wood;
 	public static Block yew_wood;
 	public static Block tin_ore;
@@ -67,6 +80,7 @@ public class Main {
 	public static Block cracked_end_brick;
 	public static Block rubber_planks;
 	public static Block yew_planks;
+	public static Block fluorescent_lamp;
 	//ITEMY
 	public static Item paintBrush;
 	public static Item saw;
@@ -175,7 +189,7 @@ public class Main {
 			.setResistance(5.0F)
 			.setStepSound(Block.soundStoneFootstep);
 		
-		specialLadder = new LadderBlock(1016, Material.glass, "specialLadder")
+		special_ladder = new LadderBlock(1016, Material.glass, "specialLadder")
 			.setUnlocalizedName("specialLadder")
 			.setCreativeTab(CreativeTabs.tabBlock)
 			.setHardness(2.0F)
@@ -294,6 +308,12 @@ public class Main {
 			.setResistance(5.0F)
 			.setStepSound(Block.soundWoodFootstep);
 		
+		fluorescent_lamp = new BlockFluorescentLamp(1033, Material.glass, "fluorescentLamp")
+			.setUnlocalizedName("fluorescentLamp")
+			.setCreativeTab(CreativeTabs.tabBlock)
+			.setHardness(2.0F)
+			.setResistance(5.0F);
+	
 		//vytvareni novych itemu a jejich vlastnosti
 		paintBrush = new ModItem(1100, "paintBrush")
 			.setUnlocalizedName("paintBrush")
@@ -676,7 +696,7 @@ public class Main {
 			'B', new ItemStack(Item.flint,1)
 			});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(specialLadder,8), new Object[]{
+		GameRegistry.addShapedRecipe(new ItemStack(special_ladder,8), new Object[]{
 			"ABA",
 			"ABA",
 			"ABA",
@@ -747,34 +767,35 @@ public class Main {
 		LanguageRegistry.addName(yew_stick,"Yew stick");
 		LanguageRegistry.addName(yew_arrow,"Yew arrow");
 	//registrace bloku do hry
-		GameRegistry.registerBlock(block1);
-		GameRegistry.registerBlock(small_glowstone);
-		GameRegistry.registerBlock(windowpane);
-		GameRegistry.registerBlock(special_glass);
-		GameRegistry.registerBlock(invisible_glass1);
-		GameRegistry.registerBlock(invisible_glass2);
-		GameRegistry.registerBlock(block7);
-		GameRegistry.registerBlock(block8);
+		GameRegistry.registerBlock(block1, "block1");
+		GameRegistry.registerBlock(small_glowstone, "smallGlowstone");
+		GameRegistry.registerBlock(windowpane, "windowpane");
+		GameRegistry.registerBlock(special_glass, "specialGlass");
+		GameRegistry.registerBlock(invisible_glass1, "invisibleGlass1");
+		GameRegistry.registerBlock(invisible_glass2, "invisibleGlass2");
+		GameRegistry.registerBlock(block7, "block7");
+		GameRegistry.registerBlock(block8, "block8");
 		GameRegistry.registerBlock(block9, ItemPillar.class, "testing" + (block9.getUnlocalizedName().substring(5)));
-		GameRegistry.registerBlock(netting_fence);
-		GameRegistry.registerBlock(magnetite_ore);
-		GameRegistry.registerBlock(specialLadder);
-		GameRegistry.registerBlock(rubber_wood);
-		GameRegistry.registerBlock(yew_wood);
-		GameRegistry.registerBlock(tin_ore);
-		GameRegistry.registerBlock(copper_ore);
-		GameRegistry.registerBlock(aluminum_ore);
-		GameRegistry.registerBlock(bauxite_ore);
-		GameRegistry.registerBlock(tungsten_ore);
-		GameRegistry.registerBlock(zinc_ore);
-		GameRegistry.registerBlock(lead_ore);
-		GameRegistry.registerBlock(silver_ore);
-		GameRegistry.registerBlock(end_brick);
-		GameRegistry.registerBlock(mossy_end_brick);
-		GameRegistry.registerBlock(chiseled_end_brick);
-		GameRegistry.registerBlock(cracked_end_brick);
-		GameRegistry.registerBlock(rubber_planks);
-		GameRegistry.registerBlock(yew_planks);
+		GameRegistry.registerBlock(netting_fence, "nettingFence");
+		GameRegistry.registerBlock(magnetite_ore, "magnetiteOre");
+		GameRegistry.registerBlock(special_ladder, "specialLadder");
+		GameRegistry.registerBlock(rubber_wood, "rubberWood");
+		GameRegistry.registerBlock(yew_wood, "yewWood");
+		GameRegistry.registerBlock(tin_ore, "tinOre");
+		GameRegistry.registerBlock(copper_ore, "copperOre");
+		GameRegistry.registerBlock(aluminum_ore, "aluminumOre");
+		GameRegistry.registerBlock(bauxite_ore, "bauxiteOre");
+		GameRegistry.registerBlock(tungsten_ore, "tungstenOre");
+		GameRegistry.registerBlock(zinc_ore, "zincOre");
+		GameRegistry.registerBlock(lead_ore, "leadOre");
+		GameRegistry.registerBlock(silver_ore, "silverOre");
+		GameRegistry.registerBlock(end_brick, "endBrick");
+		GameRegistry.registerBlock(mossy_end_brick, "mossyEndBrick");
+		GameRegistry.registerBlock(chiseled_end_brick, "chiseledEndBrick");
+		GameRegistry.registerBlock(cracked_end_brick, "crackedEndBrick");
+		GameRegistry.registerBlock(rubber_planks, "rubberPlanks");
+		GameRegistry.registerBlock(yew_planks, "yewPlanks");
+		GameRegistry.registerBlock(fluorescent_lamp, "fluorescentLamp");
 	//prirazeni jmena bloku
 		LanguageRegistry.addName(block1, "block1");
 		LanguageRegistry.addName(small_glowstone, "Small glowstone");
@@ -792,7 +813,7 @@ public class Main {
 		LanguageRegistry.addName(new ItemStack(block9,1,5), "Yew wood");
 		LanguageRegistry.addName(netting_fence, "Netting fence");
 		LanguageRegistry.addName(magnetite_ore, "Magnetite ore");
-		LanguageRegistry.addName(specialLadder, "Special ladder");
+		LanguageRegistry.addName(special_ladder, "Special ladder");
 		LanguageRegistry.addName(rubber_wood, "Rubber wood");
 		LanguageRegistry.addName(yew_wood, "Yew wood");
 		LanguageRegistry.addName(tin_ore, "Tin ore");
@@ -809,5 +830,11 @@ public class Main {
 		LanguageRegistry.addName(cracked_end_brick, "Cracked end brick");
 		LanguageRegistry.addName(rubber_planks, "Rubber planks");
 		LanguageRegistry.addName(yew_planks, "Yew planks");
+		LanguageRegistry.addName(fluorescent_lamp, "Fluorescent lamp");
 	}		
+	
+	@EventHandler
+	public void PostInit(FMLPostInitializationEvent event){
+		proxy.registerRenderers();
+	}
 }

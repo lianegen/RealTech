@@ -1,6 +1,7 @@
 package realtech.item;
 
 import realtech.enumtool.EnumToolMod;
+import realtech.lib.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -166,6 +167,6 @@ public class BrassSword extends Item
     @Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister par1){
-		this.itemIcon = par1.registerIcon("testing:"+location);
+		this.itemIcon = par1.registerIcon(Reference.modid + ":"+location);
 	}
 }

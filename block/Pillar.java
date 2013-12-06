@@ -2,6 +2,8 @@ package realtech.block;
 
 import java.util.List;
 
+import realtech.lib.Reference;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -43,7 +45,7 @@ public class Pillar extends Block{
 		icons = new Icon[6];
 		
 		for(int i = 0; i<icons.length; i++){
-			icons[i] = par1.registerIcon("testing:"+location+i);
+			icons[i] = par1.registerIcon(Reference.modid + ":"+location+i);
 		}
 	}
 	
