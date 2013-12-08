@@ -41,14 +41,27 @@ public class ModelFluorescentLampRenderer extends TileEntitySpecialRenderer impl
 		//The PushMatrix tells the renderer to "start" doing something.
         GL11.glPushMatrix();
         //This is setting the initial location.
-        GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
+        if(te.getBlockMetadata() == 1){
+        	GL11.glTranslatef((float) x + 0.5F, (float) y - 0.5F, (float) z + 0.5F);
+        }else if((te.getBlockMetadata() == 3)||(te.getBlockMetadata() == 2)){
+        	GL11.glTranslatef((float) x + 0.5F, (float) y - 0.5F, (float) z + 0.5F);
+        	GL11.glRotatef(90F, 1F, 0, 0);
+        	
+        	if(te.getBlockMetadata() == 2){
+        		GL11.glRotatef(90F, 0, 1F, 0);
+        		GL11.glTranslatef(0, 0, -1F);
+        	}else{
+        		GL11.glRotatef(180F, 0, 1F, 0);
+        		GL11.glTranslatef(0, 0, 1F);
+        	}
+        }
        
         //Use in 1.6.2  this
         ResourceLocation textures = (new ResourceLocation(Reference.modid + ":textures/models/ModelFluorescentLamp.png")); 
         Minecraft.getMinecraft().renderEngine.bindTexture(textures);
         //This rotation part is very important! Without it, your model will render upside-down! And for some reason you DO need PushMatrix again!                      
         GL11.glPushMatrix();
-        GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+        
         switch(te.getBlockMetadata()){
         case 2:
         	break;

@@ -51,17 +51,17 @@ public class ModelFluorescentLamp extends ModelBase
       Shape5.mirror = true;
       setRotation(Shape5, 0F, 0F, 0F);
       Shape6 = new ModelRenderer(this, 0, 17);
-      Shape6.addBox(0.5F, 11F, -7F, 1, 1, 14);
-      Shape6.setRotationPoint(0F, 10F, 0F);
+      Shape6.addBox(0.5F, -1F, -7F, 1, 1, 14);
+      Shape6.setRotationPoint(0F, 21F, 0F);
       Shape6.setTextureSize(64, 32);
       Shape6.mirror = true;
-      setRotation(Shape6, 0F, 0F, 0F);
+      setRotation(Shape6, 0F, 0F, 0.7853982F);
       Shape7 = new ModelRenderer(this, 0, 17);
-      Shape7.addBox(-1.5F, 11F, -7F, 1, 1, 14);
-      Shape7.setRotationPoint(0F, 10F, 0F);
+      Shape7.addBox(-1F, 0.5F, -7F, 1, 1, 14);
+      Shape7.setRotationPoint(0F, 21F, 0F);
       Shape7.setTextureSize(64, 32);
       Shape7.mirror = true;
-      setRotation(Shape7, 0F, 0F, 0F);
+      setRotation(Shape7, 0F, 0F, 0.7853982F);
   }
   
   public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
