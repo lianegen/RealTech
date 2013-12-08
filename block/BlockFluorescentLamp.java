@@ -1,24 +1,29 @@
 package realtech.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Vec3;
-import net.minecraft.world.World;
-import realtech.lib.Reference;
-import realtech.tileentity.TileEntityFluorescentLamp;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraftforge.common.ForgeDirection;
+import static net.minecraftforge.common.ForgeDirection.DOWN;
 import static net.minecraftforge.common.ForgeDirection.EAST;
 import static net.minecraftforge.common.ForgeDirection.NORTH;
 import static net.minecraftforge.common.ForgeDirection.SOUTH;
 import static net.minecraftforge.common.ForgeDirection.WEST;
-import static net.minecraftforge.common.ForgeDirection.DOWN;
+
+import java.util.List;
+
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
+import realtech.lib.Pix;
+import realtech.lib.Reference;
+import realtech.tileentity.TileEntityFluorescentLamp;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockFluorescentLamp extends BlockContainer{
 	
@@ -28,10 +33,32 @@ public class BlockFluorescentLamp extends BlockContainer{
 		super(par1, par2Material);
 		this.location = location;
 	}
-	
-	{
-	this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-	}
+	//16,4,6
+	@Override
+		public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+		    {
+			  int metadata = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+					  switch(metadata){
+					  case 5:this.setBlockBounds(Pix.TWELVE,Pix.FIVE,0,Pix.SIXTEEN,Pix.ELEVEN,Pix.SIXTEEN);
+					  break;
+					  case 4:this.setBlockBounds(0,Pix.FIVE,0,Pix.FOUR,Pix.ELEVEN,Pix.SIXTEEN);
+					  break;
+					  case 3:this.setBlockBounds(0,Pix.FIVE,0,Pix.SIXTEEN,Pix.ELEVEN,Pix.FOUR);
+					  break;
+					  case 2:this.setBlockBounds(0,Pix.FIVE,Pix.TWELVE,Pix.SIXTEEN,Pix.ELEVEN,Pix.SIXTEEN);
+					  break;
+					  case 1:this.setBlockBounds(Pix.FIVE,Pix.TWELVE,0,Pix.ELEVEN,Pix.SIXTEEN,Pix.SIXTEEN);
+						  break;
+					  case 0:this.setBlockBounds(0,Pix.TWELVE,Pix.FIVE,Pix.SIXTEEN,Pix.SIXTEEN,Pix.ELEVEN);
+						  break;
+					  }
+		    }
+		 	@Override
+			public void addCollisionBoxesToList(World par1World, int par2, int par3, int par4, AxisAlignedBB par5AxisAlignedBB, List par6List, Entity par7Entity)
+		    {
+		        this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
+		        super.addCollisionBoxesToList(par1World, par2, par3, par4, par5AxisAlignedBB, par6List, par7Entity);
+		    }
 	@Override
 	public boolean isOpaqueCube(){
 		return false;
@@ -75,6 +102,10 @@ public class BlockFluorescentLamp extends BlockContainer{
 				return true;
 			return false;
 		case 1:
+			if(world.isBlockSolidOnSide(x, y + 1, z, DOWN ))
+				return true;
+			return false;
+		case 0:
 			if(world.isBlockSolidOnSide(x, y + 1, z, DOWN ))
 				return true;
 			return false;
