@@ -27,13 +27,6 @@ public class ModelFluorescentLampRenderer extends TileEntitySpecialRenderer impl
 		this.model = new ModelFluorescentLamp();
 		this.renderID = id;
 	}
-	
-	private void adjustRotatePivotViaMeta(World world, int x, int y, int z) {
-        int meta = world.getBlockMetadata(x, y, z);
-        GL11.glPushMatrix();
-        GL11.glRotatef(meta * (-90), 0.0F, 0.0F, 1.0F);
-        GL11.glPopMatrix();
-	}
 
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y,
@@ -41,19 +34,38 @@ public class ModelFluorescentLampRenderer extends TileEntitySpecialRenderer impl
 		//The PushMatrix tells the renderer to "start" doing something.
         GL11.glPushMatrix();
         //This is setting the initial location.
-        if(te.getBlockMetadata() == 1){
-        	GL11.glTranslatef((float) x + 0.5F, (float) y - 0.5F, (float) z + 0.5F);
-        }else if((te.getBlockMetadata() == 3)||(te.getBlockMetadata() == 2)){
-        	GL11.glTranslatef((float) x + 0.5F, (float) y - 0.5F, (float) z + 0.5F);
+        GL11.glTranslatef((float) x + 0.5F, (float) y, (float) z + 0.5F);
+        
+        switch(te.getBlockMetadata()){
+        case 0:
+        	GL11.glTranslatef(0,- 0.5F,0);
+        	GL11.glRotatef(90F, 0, 1F, 0);
+        	break;
+        case 1:
+        	GL11.glTranslatef(0,- 0.5F,0);
+        	break;
+        case 2:
+        	GL11.glRotatef(90F, 0, 0, 1F);
         	GL11.glRotatef(90F, 1F, 0, 0);
-        	
-        	if(te.getBlockMetadata() == 2){
-        		GL11.glRotatef(90F, 0, 1F, 0);
-        		GL11.glTranslatef(0, 0, -1F);
-        	}else{
-        		GL11.glRotatef(180F, 0, 1F, 0);
-        		GL11.glTranslatef(0, 0, 1F);
-        	}
+        	GL11.glTranslatef(0.5F, -1F, 0);
+        	break;
+        case 3:
+        	GL11.glRotatef(90F, 0, 0, 1F);
+        	GL11.glRotatef(-90F, 1F, 0, 0);
+        	GL11.glTranslatef(0.5F, -1F, 0);
+        	break;
+        case 4:
+        	GL11.glRotatef(90F, 0, 0, 1F);
+        	GL11.glTranslatef(0.5F, -1F, 0);
+        	break;
+        case 5:
+        	GL11.glRotatef(90F, 0, 0, 1F);
+        	GL11.glRotatef(-180F, 1F, 0, 0);
+        	GL11.glTranslatef(0.5F, -1F, 0);
+        	break;
+        default:
+        	System.out.println(te.getBlockType().getUnlocalizedName() + " was placed with wrong metadata!");
+        	throw new IllegalStateException();
         }
        
         //Use in 1.6.2  this
@@ -61,22 +73,6 @@ public class ModelFluorescentLampRenderer extends TileEntitySpecialRenderer impl
         Minecraft.getMinecraft().renderEngine.bindTexture(textures);
         //This rotation part is very important! Without it, your model will render upside-down! And for some reason you DO need PushMatrix again!                      
         GL11.glPushMatrix();
-        
-        switch(te.getBlockMetadata()){
-        case 2:
-        	break;
-        case 4:
-        	GL11.glRotatef(90F, 0F, 1F, 0F);
-        	break;
-        case 5:
-        	GL11.glRotatef(270F, 0F, 1F, 0F);
-        	break;
-        case 3:
-        	GL11.glRotatef(180F, 0F, 1F, 0F);
-        	break;
-        default:
-        	break;
-        }
         
         this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);     
         

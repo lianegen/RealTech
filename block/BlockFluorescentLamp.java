@@ -1,16 +1,19 @@
 package realtech.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import realtech.lib.Reference;
 import realtech.tileentity.TileEntityFluorescentLamp;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.ForgeDirection;
-
 import static net.minecraftforge.common.ForgeDirection.EAST;
 import static net.minecraftforge.common.ForgeDirection.NORTH;
 import static net.minecraftforge.common.ForgeDirection.SOUTH;
@@ -100,6 +103,23 @@ public class BlockFluorescentLamp extends BlockContainer{
     }
 	
 	@Override
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase ELB, ItemStack par6ItemStack) {
+    	if(par1World.getBlockMetadata(par2, par3, par4) == 1){		
+    		float rotation = ELB.getRotationYawHead();
+    		
+    		while(rotation > 360F)
+    			rotation -= 360F;
+    		
+    		while(rotation < -360F)
+    			rotation += 360F;
+    			
+    		if(((rotation < 45F)&&(rotation > -45F))||((rotation < -135F)&&(rotation > -225F))||((rotation > 135F)&&(rotation < 225F))||((rotation > 315F))||(rotation < -315F)){
+    			par1World.setBlockMetadataWithNotify(par2, par3, par4, 0, 2);
+    		}	
+    	}
+    }
+	
+	@Override
 	public int onBlockPlaced(World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8, int par9)
     {
         if (par5 == 3)
@@ -125,7 +145,6 @@ public class BlockFluorescentLamp extends BlockContainer{
         {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 2);
         }
-        System.out.println(par1World.getBlockMetadata(par2, par3, par4));
         return par1World.getBlockMetadata(par2, par3, par4);
     }
 	

@@ -31,6 +31,7 @@ import realtech.item.ModItemSaw;
 import realtech.lib.Reference;
 import realtech.proxy.ClientProxy;
 import realtech.proxy.CommonProxy;
+import realtech.tileentity.TileEntityFluorescentLamp;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -796,6 +797,8 @@ public class RealTech {
 		GameRegistry.registerBlock(rubber_planks, "rubberPlanks");
 		GameRegistry.registerBlock(yew_planks, "yewPlanks");
 		GameRegistry.registerBlock(fluorescent_lamp, "fluorescentLamp");
+	//registrace tileentity
+		GameRegistry.registerTileEntity(TileEntityFluorescentLamp.class, "TileFluorescentLamp");
 	//prirazeni jmena bloku
 		LanguageRegistry.addName(block1, "block1");
 		LanguageRegistry.addName(small_glowstone, "Small glowstone");
