@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.MinecraftForge;
 import realtech.block.BlockFluorescentLamp;
+import realtech.block.ComparisonLamp;
 import realtech.block.HardOreBlock;
 import realtech.block.LadderBlock;
 import realtech.block.MagnetiteOreBlock;
@@ -60,7 +61,7 @@ public class RealTech {
 	public static Block invisible_glass1;
 	public static Block invisible_glass2;
 	public static Block block7;
-	public static Block block8;
+	public static Block special_wool;
 	public static Block block9;
 	public static Block netting_fence;
 	public static Block magnetite_ore;
@@ -82,6 +83,8 @@ public class RealTech {
 	public static Block rubber_planks;
 	public static Block yew_planks;
 	public static Block fluorescent_lamp;
+	public static Block comparison_lamp_off;
+	public static Block comparison_lamp_on;
 	//ITEMY
 	public static Item paintBrush;
 	public static Item saw;
@@ -162,8 +165,8 @@ public class RealTech {
 			.setLightValue(0.0F)
 			.setStepSound(Block.soundStoneFootstep);
 		
-		block8 = new ModBlock(1007, Material.rock, "block8")
-			.setUnlocalizedName("block8")
+		special_wool = new ModBlock(1007, Material.rock, "specialWool")
+			.setUnlocalizedName("specialWool")
 			.setCreativeTab(CreativeTabs.tabBlock)
 			.setHardness(25.0F)
 			.setResistance(10.0F)
@@ -314,6 +317,19 @@ public class RealTech {
 			.setCreativeTab(CreativeTabs.tabBlock)
 			.setHardness(2.0F)
 			.setResistance(5.0F);
+		
+		comparison_lamp_off = new ComparisonLamp(1034, Material.rock, "comparisonLampOff", false)
+			.setUnlocalizedName("comparisonLampOff")
+			.setCreativeTab(CreativeTabs.tabBlock)
+			.setHardness(25.0F)
+			.setResistance(10.0F)
+			.setStepSound(Block.soundStoneFootstep);
+		
+		comparison_lamp_on = new ComparisonLamp(1035, Material.rock, "comparisonLampOn", true)
+			.setUnlocalizedName("comparisonLampOn")
+			.setHardness(25.0F)
+			.setResistance(10.0F)
+			.setStepSound(Block.soundStoneFootstep);
 	
 		//vytvareni novych itemu a jejich vlastnosti
 		paintBrush = new ModItem(1100, "paintBrush")
@@ -604,7 +620,7 @@ public class RealTech {
 			'C', new ItemStack(Item.flint,1)
 			});
 		//blocky
-		GameRegistry.addShapedRecipe(new ItemStack(block8,8), new Object[]{
+		GameRegistry.addShapedRecipe(new ItemStack(special_wool,8), new Object[]{
 			"ABA",
 			"BCB",
 			"ABA",
@@ -775,7 +791,7 @@ public class RealTech {
 		GameRegistry.registerBlock(invisible_glass1, "invisibleGlass1");
 		GameRegistry.registerBlock(invisible_glass2, "invisibleGlass2");
 		GameRegistry.registerBlock(block7, "block7");
-		GameRegistry.registerBlock(block8, "block8");
+		GameRegistry.registerBlock(special_wool, "specialWool");
 		GameRegistry.registerBlock(block9, ItemPillar.class, "testing" + (block9.getUnlocalizedName().substring(5)));
 		GameRegistry.registerBlock(netting_fence, "nettingFence");
 		GameRegistry.registerBlock(magnetite_ore, "magnetiteOre");
@@ -797,6 +813,8 @@ public class RealTech {
 		GameRegistry.registerBlock(rubber_planks, "rubberPlanks");
 		GameRegistry.registerBlock(yew_planks, "yewPlanks");
 		GameRegistry.registerBlock(fluorescent_lamp, "fluorescentLamp");
+		GameRegistry.registerBlock(comparison_lamp_off, "comparisonLampOff");
+		GameRegistry.registerBlock(comparison_lamp_on, "comparisonLampOn");
 	//registrace tileentity
 		GameRegistry.registerTileEntity(TileEntityFluorescentLamp.class, "TileFluorescentLamp");
 	//prirazeni jmena bloku
@@ -807,7 +825,7 @@ public class RealTech {
 		LanguageRegistry.addName(invisible_glass1, "invisible glass1");
 		LanguageRegistry.addName(invisible_glass2, "invisible glass2");
 		LanguageRegistry.addName(block7, "test block7");
-		LanguageRegistry.addName(block8, "test block8");
+		LanguageRegistry.addName(special_wool, "Special wool");
 		LanguageRegistry.addName(new ItemStack(block9,1,0), "Oak wood");
 		LanguageRegistry.addName(new ItemStack(block9,1,1), "Spruce wood");
 		LanguageRegistry.addName(new ItemStack(block9,1,2), "Birch wood");
@@ -834,6 +852,7 @@ public class RealTech {
 		LanguageRegistry.addName(rubber_planks, "Rubber planks");
 		LanguageRegistry.addName(yew_planks, "Yew planks");
 		LanguageRegistry.addName(fluorescent_lamp, "Fluorescent lamp");
+		LanguageRegistry.addName(comparison_lamp_off, "Comparison lamp");
 	}		
 	
 	@EventHandler
