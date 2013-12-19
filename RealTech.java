@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.MinecraftForge;
 import realtech.block.BlockFluorescentLamp;
+import realtech.block.CableBlock;
 import realtech.block.ComparisonLamp;
 import realtech.block.HardOreBlock;
 import realtech.block.LadderBlock;
@@ -85,6 +86,7 @@ public class RealTech {
 	public static Block fluorescent_lamp;
 	public static Block comparison_lamp_off;
 	public static Block comparison_lamp_on;
+	public static Block cable;
 	//ITEMY
 	public static Item paintBrush;
 	public static Item saw;
@@ -330,7 +332,13 @@ public class RealTech {
 			.setHardness(25.0F)
 			.setResistance(10.0F)
 			.setStepSound(Block.soundStoneFootstep);
-	
+		
+		cable = new CableBlock(1036, Material.glass, "cable")
+			.setUnlocalizedName("cable")
+			.setCreativeTab(CreativeTabs.tabBlock)
+			.setHardness(2.0F)
+			.setResistance(5.0F);
+		
 		//vytvareni novych itemu a jejich vlastnosti
 		paintBrush = new ModItem(1100, "paintBrush")
 			.setUnlocalizedName("paintBrush")
@@ -815,6 +823,7 @@ public class RealTech {
 		GameRegistry.registerBlock(fluorescent_lamp, "fluorescentLamp");
 		GameRegistry.registerBlock(comparison_lamp_off, "comparisonLampOff");
 		GameRegistry.registerBlock(comparison_lamp_on, "comparisonLampOn");
+		GameRegistry.registerBlock(cable, "cable");
 	//registrace tileentity
 		GameRegistry.registerTileEntity(TileEntityFluorescentLamp.class, "TileFluorescentLamp");
 	//prirazeni jmena bloku
@@ -853,6 +862,7 @@ public class RealTech {
 		LanguageRegistry.addName(yew_planks, "Yew planks");
 		LanguageRegistry.addName(fluorescent_lamp, "Fluorescent lamp");
 		LanguageRegistry.addName(comparison_lamp_off, "Comparison lamp");
+		LanguageRegistry.addName(cable, "Cable");
 	}		
 	
 	@EventHandler

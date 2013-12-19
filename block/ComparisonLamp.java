@@ -36,8 +36,8 @@ public class ComparisonLamp extends Block{
 	    {
 			if (side == -1)
 				return false;
-	
-			return true;    
+			
+			return true;  
 	    }
 		
 		@Override
@@ -62,15 +62,13 @@ public class ComparisonLamp extends Block{
 
 		public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5)
 	    {
-			if (!par1World.isRemote)
-	        {
-	        	int power = par1World.getStrongestIndirectPower(par2, par3, par4);
-	        	if(power == 0){
-	        		par1World.setBlock(par2, par3, par4, RealTech.comparison_lamp_off.blockID);
-	        	}else{
-	        		par1World.setBlock(par2, par3, par4, RealTech.comparison_lamp_on.blockID);
-	        		par1World.setBlockMetadataWithNotify(par2, par3, par4, power, 2);	        
-	        	}
+	        int power = par1World.getStrongestIndirectPower(par2, par3, par4);
+	        System.out.println(power);
+	        if(power == 0){
+	        	par1World.setBlock(par2, par3, par4, RealTech.comparison_lamp_off.blockID);
+	        }else{
+	        	par1World.setBlock(par2, par3, par4, RealTech.comparison_lamp_on.blockID);
+	        	par1World.setBlockMetadataWithNotify(par2, par3, par4, power, 2);	        
 	        }
 	    }
 		
