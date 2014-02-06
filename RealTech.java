@@ -9,6 +9,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.MinecraftForge;
 import realtech.block.BlockFluorescentLamp;
 import realtech.block.CableBlock;
+import realtech.block.CarpetBlock;
 import realtech.block.ComparisonLamp;
 import realtech.block.HardOreBlock;
 import realtech.block.LadderBlock;
@@ -31,8 +32,8 @@ import realtech.item.ItemPillar;
 import realtech.item.ModItem;
 import realtech.item.ModItemSaw;
 import realtech.lib.Reference;
-import realtech.proxy.ClientProxy;
 import realtech.proxy.CommonProxy;
+import realtech.tileentity.TileCableBlock;
 import realtech.tileentity.TileEntityFluorescentLamp;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -87,6 +88,8 @@ public class RealTech {
 	public static Block comparison_lamp_off;
 	public static Block comparison_lamp_on;
 	public static Block cable;
+	public static Block glass_carpet;
+	public static Block obsidian_plate;
 	//ITEMY
 	public static Item paintBrush;
 	public static Item saw;
@@ -322,13 +325,12 @@ public class RealTech {
 		
 		comparison_lamp_off = new ComparisonLamp(1034, Material.rock, "comparisonLampOff", false)
 			.setUnlocalizedName("comparisonLampOff")
-			.setCreativeTab(CreativeTabs.tabBlock)
+			.setCreativeTab(CreativeTabs.tabRedstone)
 			.setHardness(25.0F)
 			.setResistance(10.0F)
 			.setStepSound(Block.soundStoneFootstep);
 		
 		comparison_lamp_on = new ComparisonLamp(1035, Material.rock, "comparisonLampOn", true)
-			.setUnlocalizedName("comparisonLampOn")
 			.setHardness(25.0F)
 			.setResistance(10.0F)
 			.setStepSound(Block.soundStoneFootstep);
@@ -338,6 +340,13 @@ public class RealTech {
 			.setCreativeTab(CreativeTabs.tabBlock)
 			.setHardness(2.0F)
 			.setResistance(5.0F);
+		
+		glass_carpet = new CarpetBlock(1037, Material.glass, "glassCarpet")
+			.setUnlocalizedName("glassCarpet")
+			.setCreativeTab(CreativeTabs.tabBlock)
+			.setHardness(2.0F)
+			.setResistance(5.0F)
+			.setStepSound(Block.soundGlassFootstep);
 		
 		//vytvareni novych itemu a jejich vlastnosti
 		paintBrush = new ModItem(1100, "paintBrush")
@@ -373,62 +382,62 @@ public class RealTech {
 		
 		magnet_ingot = new ModItem(1106, "magnetIngot")
 			.setUnlocalizedName("magnetIngot")
-			.setCreativeTab(CreativeTabs.tabMisc)
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setMaxStackSize(64);
 		
 		steel_ingot = new ModItem(1107, "steelIngot")
 			.setUnlocalizedName("steelIngot")
-			.setCreativeTab(CreativeTabs.tabMisc)
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setMaxStackSize(64);
 		
 		tin_ingot = new ModItem(1108, "tinIngot")
 			.setUnlocalizedName("tinIngot")
-			.setCreativeTab(CreativeTabs.tabMisc)
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setMaxStackSize(64);
 		
 		copper_ingot = new ModItem(1109, "copperIngot")
 			.setUnlocalizedName("copperIngot")
-			.setCreativeTab(CreativeTabs.tabMisc)
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setMaxStackSize(64);
 		
 		aluminum_ingot = new ModItem(1110, "aluminumIngot")
 			.setUnlocalizedName("aluminumIngot")
-			.setCreativeTab(CreativeTabs.tabMisc)
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setMaxStackSize(64);
 		
 		bauxite_ingot = new ModItem(1111, "bauxiteIngot")
 			.setUnlocalizedName("bauxiteIngot")
-			.setCreativeTab(CreativeTabs.tabMisc)
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setMaxStackSize(64);
 		
 		tungsten_ingot = new ModItem(1112, "tungstenIngot")
 			.setUnlocalizedName("tungstenIngot")
-			.setCreativeTab(CreativeTabs.tabMisc)
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setMaxStackSize(64);
 		
 		brass_ingot = new ModItem(1113, "brassIngot")
 			.setUnlocalizedName("brassIngot")
-			.setCreativeTab(CreativeTabs.tabMisc)
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setMaxStackSize(64);
 			
 		bronze_ingot = new ModItem(1114, "bronzeIngot")
 			.setUnlocalizedName("bronzeIngot")
-			.setCreativeTab(CreativeTabs.tabMisc)
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setMaxStackSize(64);
 		
 		zinc_ingot = new ModItem(1115, "zincIngot")
 			.setUnlocalizedName("zincIngot")
-			.setCreativeTab(CreativeTabs.tabMisc)
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setMaxStackSize(64);
 		
 		lead_ingot = new ModItem(1116, "leadIngot")
 			.setUnlocalizedName("leadIngot")
-			.setCreativeTab(CreativeTabs.tabMisc)
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setMaxStackSize(64);
 		
 		silver_ingot = new ModItem(1117, "silverIngot")
 			.setUnlocalizedName("silverIngot")
-			.setCreativeTab(CreativeTabs.tabMisc)
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setMaxStackSize(64);
 		
 		wheel = new ModItem(1118, "wheel")
@@ -737,6 +746,13 @@ public class RealTech {
 			'B', new ItemStack(Block.glass,1)
 			});
 		
+		GameRegistry.addShapedRecipe(new ItemStack(glass_carpet,4), new Object[]{
+			"   ",
+			"   ",
+			"AA ",
+			'A', new ItemStack(Block.glass,1)
+			});
+		
 		//specialni krafteni
 		GameRegistry.registerCraftingHandler(craftingHandler);
 		
@@ -822,10 +838,11 @@ public class RealTech {
 		GameRegistry.registerBlock(yew_planks, "yewPlanks");
 		GameRegistry.registerBlock(fluorescent_lamp, "fluorescentLamp");
 		GameRegistry.registerBlock(comparison_lamp_off, "comparisonLampOff");
-		GameRegistry.registerBlock(comparison_lamp_on, "comparisonLampOn");
 		GameRegistry.registerBlock(cable, "cable");
+		GameRegistry.registerBlock(glass_carpet, "Glass carpet");
 	//registrace tileentity
 		GameRegistry.registerTileEntity(TileEntityFluorescentLamp.class, "TileFluorescentLamp");
+		GameRegistry.registerTileEntity(TileCableBlock.class, "TileCable");
 	//prirazeni jmena bloku
 		LanguageRegistry.addName(block1, "block1");
 		LanguageRegistry.addName(small_glowstone, "Small glowstone");
@@ -863,6 +880,7 @@ public class RealTech {
 		LanguageRegistry.addName(fluorescent_lamp, "Fluorescent lamp");
 		LanguageRegistry.addName(comparison_lamp_off, "Comparison lamp");
 		LanguageRegistry.addName(cable, "Cable");
+		LanguageRegistry.addName(glass_carpet, "Glass carpet");
 	}		
 	
 	@EventHandler
